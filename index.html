@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TALLER PREMIUM | Latonería & Pintura</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #ffffff;
+            --main-red: #cc0000;
+            --dark-red: #660000;
+            --light-red: #ff3333;
+            --gradient-red: linear-gradient(135deg, #cc0000 0%, #660000 100%);
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: auto;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('imagenes/fondo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* --- Header --- */
+        header {
+            width: 100%;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            text-align: left;
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--text-secondary);
+            padding-top: 5px;
+            display: inline-block;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 90%;
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .car-image {
+            position: absolute;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .car-image.left {
+            width: 45%;
+            left: 10%;
+            z-index: 1;
+            filter: brightness(0.4);
+            animation: fadeInSlideUp 1.2s forwards 0.3s;
+        }
+
+        .car-image.right {
+            width: 45%;
+            right: 10%;
+            z-index: 1;
+            filter: brightness(0.4);
+            animation: fadeInSlideUp 1.2s forwards 0.5s;
+        }
+
+        .car-image.center {
+            width: 22%;
+            height: 110%;
+            z-index: 2;
+            filter: brightness(0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInSlideUp 1.2s forwards 0.7s;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Hero Text --- */
+        .hero-content {
+            position: absolute;
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 12px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1.2s;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(4rem, 10vw, 12rem);
+            line-height: 0.9;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            opacity: 0;
+            letter-spacing: 0.05em; /* Fix L-I overlap */
+            white-space: nowrap; /* Prevent any wrapping */
+            animation: fadeIn 1.5s forwards 1.4s;
+        }
+
+        .hero-title span.k-fix {
+            display: inline-block;
+            margin-left: -0.05em;
+            margin-right: -0.01em; /* Increased gap from -0.02em to avoid touch */
+            transform: translateY(-0.05em);
+        }
+
+        .hero-title span.g-fix {
+            display: inline-block;
+            margin-left: -0.02em;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- Bottom HUD --- */
+        .bottom-hud {
+            width: 100%;
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: fixed;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .scroll-indicator {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 1px;
+            height: 30px;
+            background-color: var(--text-secondary);
+            display: block;
+        }
+
+        .stats-bar {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 40px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            width: 1px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-round {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-round:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+        .contact-btn {
+            background: rgba(25, 25, 25, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--text-primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            pointer-events: auto;
+            /* Ensure it receives clicks */
+        }
+
+        .contact-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-color);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+
+            header,
+            .bottom-hud {
+                padding: 30px;
+            }
+
+            .stats-bar {
+                display: none;
+                /* Substituted by mobile version or hidden */
+            }
+
+            .car-image.left,
+            .car-image.right {
+                width: 60%;
+            }
+
+            .car-image.center {
+                width: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .image-container {
+                width: 100%;
+                height: 100%;
+            }
+
+            .car-image.center {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+
+        /* --- Contact Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(180, 0, 0, 0.5);
+            /* Red translucent */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 20px;
+        }
+
+        .modal-info h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: contain;
+            background: white;
+            padding: 10px;
+        }
+
+        .profile-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .profile-text small {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.75rem;
+        }
+
+        .form-card {
+            background: white;
+            color: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-card.dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .form-card h4 {
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-card.dark .form-group input,
+        .form-card.dark .form-group textarea {
+            border-bottom: 1px solid #444;
+            color: white;
+        }
+
+        .modal-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .form-card.dark .modal-btn {
+            background: white;
+            color: black;
+        }
+
+        .btn-arrow-circle {
+            background: #fff;
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-card.dark .btn-arrow-circle {
+            background: #000;
+            color: #fff;
+        }
+
+        /* --- New Sections --- */
+        .section-container {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 50px;
+            background: var(--gradient-red);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .social-link {
+            padding: 15px 35px;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link.ig { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+        .social-link.wa { background: #25D366; }
+        .social-link:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+        .carousel-nav {
+            position: absolute;
+            top: 110px;
+            right: 60px;
+            display: flex;
+            gap: 15px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .nav-btn:hover {
+            background: var(--main-red);
+            border-color: var(--main-red);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+        }
+
+        .work-carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        .work-carousel::-webkit-scrollbar { display: none; }
+
+        .carousel-item {
+            flex: 0 0 450px;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s;
+        }
+
+        .carousel-item:hover img { transform: scale(1.1); }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--main-red);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-card:hover { border-color: rgba(204, 0, 0, 0.3); transform: translateY(-10px); }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 2500;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .nav-close {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-close:hover { color: var(--main-red); transform: rotate(90deg); }
+
+        .nav-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .nav-menu-links a {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: white;
+            text-decoration: none;
+            transition: 0.4s;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu-links a:hover {
+            color: var(--main-red);
+            padding-left: 20px;
+        }
+
+        .content-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 100px 0;
+        }
+
+        .content-img {
+            border-radius: 20px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            filter: grayscale(1) invert(1) contrast(1.2);
+        }
+
+        .contact-v2 {
+            background: var(--gradient-red);
+            padding: 80px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .vm-card {
+            background-size: cover;
+            background-position: center;
+            padding: 80px 40px;
+            border-radius: 24px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .vm-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: -1;
+        }
+
+        .vm-card h4 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--main-red);
+        }
+
+        @media (max-width: 900px) {
+            .modal-overlay {
+                padding: 15px;
+            }
+
+            .modal-container {
+                grid-template-columns: 1fr;
+                height: 90vh;
+                width: 100%;
+                gap: 15px;
+                overflow-y: auto;
+                padding-bottom: 150px; /* Space for buttons at the very bottom */
+            }
+
+            .modal-info {
+                display: flex !important;
+                flex-direction: column;
+                margin-bottom: 40px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .modal-info h3 {
+                font-size: 0.9rem;
+                margin-bottom: 5px;
+            }
+
+            .modal-info .hero-title {
+                font-size: 2.5rem !important;
+            }
+
+            .profile-card {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                flex-wrap: wrap; /* Prevent overflow */
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-text h4 {
+                font-size: 1.1rem;
+            }
+
+            .form-card {
+                padding: 40px;
+                gap: 20px;
+            }
+
+            .vm-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .content-split, .vm-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contact-v2 {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+                padding: 40px;
+            }
+
+            .section-container {
+                padding: 60px 25px;
+            }
+
+            .work-carousel {
+                gap: 15px;
+            }
+
+            .carousel-item {
+                flex: 0 0 300px;
+                height: 200px;
+            }
+
+            .carousel-nav {
+                display: none;
+            }
+
+            .modal-close {
+                top: 20px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                backdrop-filter: blur(10px);
+                font-size: 1.2rem;
+                z-index: 2000;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>TALLER</h1>
+            <p>PREMIUM</p>
+        </div>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Fullscreen Menu Overhaul -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="nav-close" id="closeNav">✕</div>
+        <nav class="nav-menu-links">
+            <a href="#trabajo">Nuestro Trabajo</a>
+            <a href="#curiosidades">Datos Curiosos</a>
+            <a href="#nosotros">Quiénes Somos</a>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="image-container">
+            <!-- Center Focus Video -->
+            <video src="imagenes/inicio-overhauling.mp4" autoplay loop muted playsinline class="car-image center"></video>
+        </div>
+
+        <div class="hero-content">
+            <p class="hero-subtitle">Restauración Automotriz</p>
+            <h2 class="hero-title" id="mainHeroTitle">OVERHAULIN<span class="k-fix">'</span><span class="g-fix">G</span></h2>
+        </div>
+    </section>
+
+    <!-- Nuestro Trabajo -->
+    <section class="section-container" id="trabajo">
+        <h2 class="section-title">Nuestro Trabajo</h2>
+        <div class="carousel-nav">
+            <button class="nav-btn" id="prevBtn">←</button>
+            <button class="nav-btn" id="nextBtn">→</button>
+        </div>
+        <div class="work-carousel">
+            <div class="carousel-item"><img src="imagenes/1.webp" alt="Trabajo 1"></div>
+            <div class="carousel-item"><img src="imagenes/2.webp" alt="Trabajo 2"></div>
+            <div class="carousel-item"><img src="imagenes/3.webp" alt="Trabajo 3"></div>
+            <div class="carousel-item"><img src="imagenes/4.webp" alt="Trabajo 4"></div>
+            <div class="carousel-item"><img src="imagenes/5.webp" alt="Trabajo 5"></div>
+            <div class="carousel-item"><img src="imagenes/6.webp" alt="Trabajo 6"></div>
+            <div class="carousel-item"><img src="imagenes/7.webp" alt="Trabajo 7"></div>
+        </div>
+    </section>
+
+    <!-- Curiosidades -->
+    <section class="section-container" id="curiosidades">
+        <h2 class="section-title">Datos Curiosos</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4 style="margin-bottom: 15px; color: var(--main-red); font-family: 'Bebas Neue'; font-size: 2rem;">Precisión Milimétrica</h4>
+                <p>Nuestra técnica de latonería garantiza que cada pieza recupere su forma original exacta, utilizando tecnología de medición láser.</p>
+            </div>
+            <div class="feature-card">
+                <h4 style="margin-bottom: 15px; color: var(--main-red); font-family: 'Bebas Neue'; font-size: 2rem;">Pintura Espejo</h4>
+                <p>Aplicamos hasta 7 capas de barniz cerámico para lograr un brillo profundo y una protección duradera contra el clima tropical.</p>
+            </div>
+            <div class="feature-card">
+                <h4 style="margin-bottom: 15px; color: var(--main-red); font-family: 'Bebas Neue'; font-size: 2rem;">Restauración de Élite</h4>
+                <p>Hemos devuelto la vida a más de 50 clásicos que ya se daban por perdidos, usando piezas originales importadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiénes Somos -->
+    <section class="section-container" id="nosotros">
+        <div class="content-split">
+            <div>
+                <h2 class="section-title">Quiénes Somos</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Somos un equipo de artesanos automotrices dedicados a la excelencia. En Overhauling Premium, no solo reparamos autos; restauramos sueños. Cada vehículo que entra en nuestro taller recibe un trato personalizado y meticuloso.</p>
+                <p style="margin-top: 20px; color: var(--text-secondary); line-height: 1.8;">Fundado en el corazón de Tachira, San Cristóbal, nuestro taller combina la tradición del trabajo manual con la innovación de las mejores herramientas del mercado global.</p>
+            </div>
+            <img src="imagenes/somos.png" alt="Sobre nosotros" class="content-img">
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="section-container" id="ubicacion">
+        <h2 class="section-title">Nuestra Ubicación</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31634.331206122582!2d-72.2359!3d7.766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6669!2zU2FuIENyaXN0w7NiYWwsIFRhY2hpcmEsIFZlbmV6dWVsYQ!5e0!3m2!1ses!2sve!4v123456789" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Contacto Directo Social -->
+    <section class="section-container" id="contacto">
+        <div class="contact-v2">
+            <div>
+                <h2 style="font-family: 'Bebas Neue'; font-size: clamp(2rem, 5vw, 4rem); margin: 0; line-height: 1;">CONECTA CON NOSOTROS</h2>
+                <p style="margin-top: 10px; opacity: 0.8;">Estamos a un mensaje de distancia para asesorarte.</p>
+            </div>
+            <div class="social-bar" style="display: flex; gap: 20px;">
+                <a href="https://instagram.com" class="social-link ig" target="_blank">Instagram</a>
+                <a href="https://wa.me/584247171944" class="social-link wa" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión & Visión -->
+    <section class="section-container" style="padding-bottom: 200px;">
+        <div class="vm-grid">
+            <div class="vm-card" style="background-image: url('imagenes/mision.png');">
+                <h4>Nuestra Misión</h4>
+                <p style="font-size: 1rem; line-height: 1.6; opacity: 0.9;">Liderar el mercado de restauración automotriz en Venezuela, brindando resultados que superen los estándares internacionales de calidad y estética.</p>
+            </div>
+            <div class="vm-card" style="background-image: url('imagenes/mision.png');">
+                <h4>Nuestra Visión</h4>
+                <p style="font-size: 1rem; line-height: 1.6; opacity: 0.9;">Convertirnos en el taller de referencia para los amantes del automovilismo en Latinoamérica, preservando el legado de cada motor que restauramos.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-hud">
+        <div class="scroll-indicator">
+            SCROLL
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value">Desde $1.5M</span>
+                <span class="stat-label">FINANCIAMIENTO</span>
+            </div>
+            <div class="divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">+500 Trabajos</span>
+                <span class="stat-label">RESTAURADOS</span>
+            </div>
+            <div class="divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">15 Años</span>
+                <span class="stat-label">EXPERIENCIA</span>
+            </div>
+            <div class="divider"></div>
+            <div class="stat-item">
+                <span class="stat-value">Tachira</span>
+                <span class="stat-label">UBICACIÓN</span>
+            </div>
+            <div class="btn-round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <button class="contact-btn" id="openModal">
+            Contactar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Contact Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <div class="modal-close" id="closeModal">✕</div>
+
+            <div class="modal-info">
+                <h3>Taller de Restauración</h3>
+                <h2 class="hero-title" id="modalHeroTitle" style="font-size: 1.5rem; opacity: 1; animation: none; display: flex; flex-wrap: wrap; align-self: flex-start; max-width: 100%;">OVERHAULIN<span class="k-fix">'</span><span class="g-fix">G</span></h2>
+
+                <div class="profile-card">
+                    <img src="logo_overhauling.jpg" class="profile-img" alt="Overhauling Logo">
+                    <div class="profile-text">
+                        <p>Tachira, San Cristobal</p>
+                        <h4>Equipo OVERHAULIN<span class="k-fix" style="margin-left: -0.05em; margin-right: -0.02em;">'</span>G</h4>
+                        <small>Gerencia de Ventas</small>
+                        <small>0424-7171944 / 0412-1934532</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card light">
+                <h4>¿Le gustaría que le llamemos?</h4>
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre de pila *">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Apellido *">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Correo electrónico *">
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Número de teléfono *">
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox">
+                    <span>Acepto la política de privacidad y datos de Overhauling Premium</span>
+                </div>
+                <button class="modal-btn">
+                    Llámame.
+                    <div class="btn-arrow-circle">→</div>
+                </button>
+            </div>
+
+            <div class="form-card dark">
+                <h4>Enviar Mensaje</h4>
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre de pila *">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Apellido *">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Correo electrónico *">
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Número de teléfono *">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Escribe un mensaje" rows="3"></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox">
+                    <span>Acepto la política de privacidad y datos de Overhauling Premium</span>
+                </div>
+                <button class="modal-btn">
+                    Enviar Mensaje
+                    <div class="btn-arrow-circle">→</div>
+                </button>
+            </div>
+
+            <div class="modal-social-footer" style="grid-column: 1 / -1; display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <a href="https://wa.me/584247171944" class="social-link wa" target="_blank" style="flex: 1; justify-content: center;">WhatsApp</a>
+                <a href="https://instagram.com" class="social-link ig" target="_blank" style="flex: 1; justify-content: center;">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive effects
+        document.addEventListener('mousemove', (e) => {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const deltaX = (mouseX - centerX) / centerX;
+            const deltaY = (mouseY - centerY) / centerY;
+
+            // Parallax effect for images
+            const images = document.querySelectorAll('.car-image');
+            images.forEach((img, index) => {
+                const depth = (index + 1) * 10;
+                const moveX = deltaX * depth;
+                const moveY = deltaY * depth;
+
+                if (img.classList.contains('center')) {
+                    img.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+                } else {
+                    img.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+                }
+            });
+
+            // Parallax for text
+            const title = document.querySelector('.hero-content');
+            if (title) title.style.transform = `translate(${deltaX * -20}px, ${deltaY * -20}px)`;
+        });
+
+        // Modal Logic
+        const openModal = document.getElementById('openModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalOverlay = document.getElementById('modalOverlay');
+
+        openModal.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Carousel Navigation Logic
+        const carousel = document.querySelector('.work-carousel');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        if (nextBtn && prevBtn && carousel) {
+            nextBtn.addEventListener('click', () => {
+                const scrollAmount = carousel.offsetWidth > 470 ? 470 : 320;
+                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const scrollAmount = carousel.offsetWidth > 470 ? 470 : 320;
+                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+        }
+
+        // Fullscreen Menu Logic
+        const menuIcon = document.querySelector('.menu-icon');
+        const navOverlay = document.getElementById('navOverlay');
+        const closeNav = document.getElementById('closeNav');
+        const navLinks = document.querySelectorAll('.nav-menu-links a');
+
+        menuIcon.addEventListener('click', () => {
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const hideMenu = () => {
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeNav.addEventListener('click', hideMenu);
+        navLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+        // Close on clicking outside
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        console.log("Premium Landing Initialized");
+    </script>
+</body>
+
+</html>
